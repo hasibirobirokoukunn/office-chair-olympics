@@ -85,8 +85,8 @@ button{
 const powerBar = document.getElementById("power");
 const chair = document.getElementById("chair");
 const result = document.getElementById("result");
-const bestScoreText = document.getElementById("bestScore");
 const retryBtn = document.getElementById("retryBtn");
+const bestScoreText = document.getElementById("bestScore");
 
 let power = 0;
 let direction = 1;
@@ -123,6 +123,10 @@ function launch(){
     chair.style.left = distance + "px";
 
     result.textContent = "距離: " + distance + "m";
+
+    result.textContent = "距離: " + distance + "m";
+
+retryBtn.style.display = "inline-block";
 
     retryBtn.style.display = "inline-block";
 }
