@@ -157,11 +157,13 @@ retryBtn.addEventListener("click",()=>{
 
 });
 
-</script>let bestScore = localStorage.getItem("bestScore") || 0;
+let bestScore = localStorage.getItem("bestScore") || 0;
 
 const bestText = document.createElement("h2");
 bestText.textContent = "ベスト記録: " + bestScore + "m";
 document.body.insertBefore(bestText, retryBtn);
+
+</script>
 
 </body>
 </html>
