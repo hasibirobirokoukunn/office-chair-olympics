@@ -13,6 +13,10 @@ body{
     margin:20px;
 }
 
+<div id="moneyDisplay">お金: 0円</div>
+
+<button onclick="earnMoney()">お金を増やす</button>
+
 #bar{
     width:90%;
     max-width:400px;
@@ -162,6 +166,12 @@ retryBtn.addEventListener("click",()=>{
     retryBtn.style.display = "none";
 
 });
+
+let money = 0;
+
+function earnMoney() {
+  money += 10;
+}
 
 </script>
 
