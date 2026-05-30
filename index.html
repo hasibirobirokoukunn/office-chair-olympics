@@ -109,7 +109,14 @@ setInterval(() => {
 
 },10);
 
-function launch(){
+function launch(if(distance > bestScore){
+
+    bestScore = distance;
+
+    localStorage.setItem("bestScore", bestScore);
+
+    bestText.textContent = "ベスト記録: " + bestScore + "m";
+}){
 
     if(launched) return;
 
@@ -150,7 +157,11 @@ retryBtn.addEventListener("click",()=>{
 
 });
 
-</script>
+</script>let bestScore = localStorage.getItem("bestScore") || 0;
+
+const bestText = document.createElement("h2");
+bestText.textContent = "ベスト記録: " + bestScore + "m";
+document.body.insertBefore(bestText, retryBtn);
 
 </body>
 </html>
