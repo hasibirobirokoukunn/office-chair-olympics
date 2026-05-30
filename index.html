@@ -169,8 +169,13 @@ retryBtn.addEventListener("click",()=>{
 
 let money = 0;
 
+function updateMoney() {
+  document.getElementById("moneyDisplay").textContent = "お金: " + money + "円";
+}
+
 function earnMoney() {
-  money += 10;
+  money += 10; // 10円増える
+  updateMoney();
 }
 
 </script>
