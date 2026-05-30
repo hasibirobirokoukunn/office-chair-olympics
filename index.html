@@ -2,16 +2,20 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>イス、飛びます。</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>このイス、飛びます。Byこう</title>
 
 <style>
 body{
     text-align:center;
     font-family:sans-serif;
+    margin:20px;
 }
 
 #bar{
-    width:400px;
+    width:90%;
+    max-width:400px;
     height:30px;
     border:2px solid black;
     margin:20px auto;
@@ -27,7 +31,8 @@ body{
 }
 
 #field{
-    width:800px;
+    width:95%;
+    max-width:800px;
     height:120px;
     border:2px solid black;
     margin:auto;
@@ -41,13 +46,25 @@ body{
     top:35px;
     font-size:50px;
 }
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+#retryBtn{
+    display:none;
+}
 </style>
 </head>
+
 <body>
 
 <h1>🪑イス、飛びます。</h1>
 
-<p>スペースキーでタイミングよく発射！</p>
+<p>タイミングよく発射しろ！</p>
 
 <div id="bar">
     <div id="power"></div>
@@ -59,29 +76,41 @@ body{
 
 <h2 id="result">距離: 0m</h2>
 
+<button id="launchBtn">発射！</button>
+<br>
+<button id="retryBtn">もう一回</button>
+
 <script>
+
 const powerBar = document.getElementById("power");
 const chair = document.getElementById("chair");
 const result = document.getElementById("result");
+const retryBtn = document.getElementById("retryBtn");
 
 let power = 0;
 let direction = 1;
 let launched = false;
 
 setInterval(() => {
+
     if(launched) return;
 
     power += direction * 4;
 
-    if(power >= 380) direction = -1;
-    if(power <= 0) direction = 1;
+    if(power >= 380){
+        direction = -1;
+    }
+
+    if(power <= 0){
+        direction = 1;
+    }
 
     powerBar.style.left = power + "px";
-}, 10);
 
-document.addEventListener("keydown",(e)=>{
+},10);
 
-    if(e.code !== "Space") return;
+function launch(){
+
     if(launched) return;
 
     launched = true;
@@ -91,8 +120,36 @@ document.addEventListener("keydown",(e)=>{
     chair.style.transition = "2s";
     chair.style.left = distance + "px";
 
-    result.textContent = `距離: ${distance}m`;
+    result.textContent = "距離: " + distance + "m";
+
+    retryBtn.style.display = "inline-block";
+}
+
+document.getElementById("launchBtn").addEventListener("click", launch);
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.code === "Space"){
+        launch();
+    }
+
 });
+
+retryBtn.addEventListener("click",()=>{
+
+    launched = false;
+    power = 0;
+    direction = 1;
+
+    chair.style.transition = "0s";
+    chair.style.left = "0px";
+
+    result.textContent = "距離: 0m";
+
+    retryBtn.style.display = "none";
+
+});
+
 </script>
 
 </body>
