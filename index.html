@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>イス、飛びます。</title>
+
+<style>
+body{
+    text-align:center;
+    font-family:sans-serif;
+}
+
+#bar{
+    width:400px;
+    height:30px;
+    border:2px solid black;
+    margin:20px auto;
+    position:relative;
+}
+
+#power{
+    width:20px;
+    height:100%;
+    background:red;
+    position:absolute;
+    left:0;
+}
+
+#field{
+    width:800px;
+    height:120px;
+    border:2px solid black;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+}
+
+#chair{
+    position:absolute;
+    left:0;
+    top:35px;
+    font-size:50px;
+}
+</style>
+</head>
+<body>
+
+<h1>🪑イス、飛びます。</h1>
+
+<p>スペースキーでタイミングよく発射！</p>
+
+<div id="bar">
+    <div id="power"></div>
+</div>
+
+<div id="field">
+    <div id="chair">🪑</div>
+</div>
+
+<h2 id="result">距離: 0m</h2>
+
+<script>
+const powerBar = document.getElementById("power");
+const chair = document.getElementById("chair");
+const result = document.getElementById("result");
+
+let power = 0;
+let direction = 1;
+let launched = false;
+
+setInterval(() => {
+    if(launched) return;
+
+    power += direction * 4;
+
+    if(power >= 380) direction = -1;
+    if(power <= 0) direction = 1;
+
+    powerBar.style.left = power + "px";
+}, 10);
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.code !== "Space") return;
+    if(launched) return;
+
+    launched = true;
+
+    let distance = Math.floor(power * 2);
+
+    chair.style.transition = "2s";
+    chair.style.left = distance + "px";
+
+    result.textContent = `距離: ${distance}m`;
+});
+</script>
+
+</body>
+</html>
