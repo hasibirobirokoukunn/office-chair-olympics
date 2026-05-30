@@ -85,6 +85,7 @@ button{
 const powerBar = document.getElementById("power");
 const chair = document.getElementById("chair");
 const result = document.getElementById("result");
+const bestScoreText = document.getElementById("bestScore");
 const retryBtn = document.getElementById("retryBtn");
 
 let power = 0;
@@ -146,6 +147,8 @@ retryBtn.addEventListener("click",()=>{
     chair.style.left = "0px";
 
     result.textContent = "距離: 0m";
+
+    <h2 id="bestScore">ベスト記録: 0m</h2>
 
     retryBtn.style.display = "none";
 
