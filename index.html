@@ -76,6 +76,8 @@ button{
 
 <h2 id="result">距離: 0m</h2>
 
+<h2 id="bestScoreText">ベスト: 0m</h2>
+
 <button id="launchBtn">発射！</button>
 <br>
 <button id="retryBtn">もう一回</button>
@@ -110,6 +112,8 @@ setInterval(() => {
 
 },10);
 
+let bestScore = 0;
+    
 function launch(){
     console.log("発射ボタン押された");
 
@@ -119,10 +123,14 @@ function launch(){
 
     let distance = Math.floor(power * 2);
 
+    if(distance > bestScore){
+    bestScore = distance;
+    document.getElementById("bestScoreText").textContent =
+        "ベスト: " + bestScore + "m";
+}
+
     chair.style.transition = "2s";
     chair.style.left = distance + "px";
-
-    result.textContent = "距離: " + distance + "m";
 
     result.textContent = "距離: " + distance + "m";
 
